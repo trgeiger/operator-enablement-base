@@ -9,6 +9,8 @@ FROM quay.io/fedora-ostree-desktops/silverblue:${FEDORA_MAJOR_VERSION}
 # Run our installation commands from any Copr repos
 RUN wget https://copr.fedorainfracloud.org/coprs/calcastor/gnome-patched/repo/fedora-$(rpm -E %fedora)/calcastor-gnome-patched-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_calcastor-gnome-patched.repo
 
+RUN mkdir -p /usr/local/bin
+
 # Install oc and kubectl
 RUN wget https://mirror.openshift.com/pub/openshift-${OPENSHIFT_VERSION}/clients/oc/latest/linux/oc.tar.gz -O /usr/local/bin/oc.tar.gz
 RUN tar xvzf /usr/local/bin/oc.tar.gz -C /usr/local/bin
