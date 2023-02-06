@@ -26,5 +26,5 @@ RUN rpm-ostree install vim zsh distrobox setroubleshoot-server code && \
     rm -f get_helm.sh && \
     rm -rf aws && \
     rm -f awscliv2.zip && \
-    rm -f /usr/bin/README.md
+    rm -f /usr/bin/README.md && \
     ostree container commit
