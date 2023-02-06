@@ -5,6 +5,8 @@ FROM quay.io/fedora-ostree-desktops/silverblue:${FEDORA_MAJOR_VERSION}
 
 #COPY etc /etc
 
+RUN rpm-ostree cliwrap install-to-root /
+
 # Add VSCode repo
 RUN echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo && rpm --import https://packages.microsoft.com/keys/microsoft.asc
 
@@ -27,4 +29,5 @@ RUN rpm-ostree install vim zsh distrobox setroubleshoot-server code && \
     rm -rf aws && \
     rm -f awscliv2.zip && \
     rm -f /usr/bin/README.md && \
+    rpm-ostree cleanup -m && \
     ostree container commit
