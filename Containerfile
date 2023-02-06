@@ -28,6 +28,9 @@ RUN echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft
 
 RUN rpm-ostree install vim zsh distrobox setroubleshoot-server code && \
     rm -f /etc/yum.repos.d/_copr_calcastor-gnome-patched.repo && \
+    rm -f /etc/yum.repos.d/vscode.repo && \
     rm -f get_helm.sh && \
     rm -rf aws && \
+    rm -f awscliv2.zip && \
+    rm -f /usr/bin/README.md && \
     ostree container commit
