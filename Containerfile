@@ -32,6 +32,7 @@ RUN rpm-ostree install vim zsh distrobox && \
 #    rm -f /usr/bin/README.md && \
     ostree container commit
 
+
 # Install operator-sdk
 RUN curl -Lo ./operator-sdk "https://github.com/operator-framework/operator-sdk/releases/download/v1.25.4/operator-sdk_linux_amd64"
 RUN chmod +x ./operator-sdk
