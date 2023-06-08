@@ -22,7 +22,7 @@ RUN curl -SL https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv
 
 # Install overrides and additions, remove lingering files
 RUN rpm-ostree override replace --experimental --from repo=copr:copr.fedorainfracloud.org:calcastor:gnome-patched mutter && \
-    rpm-ostree install vim zsh distrobox code openssl make podman-docker && \
+    rpm-ostree install vim zsh distrobox code openssl make podman-docker qemu libvirt virt-manager && \
     rm -f /etc/yum.repos.d/vscode.repo && \
     rm -f /etc/_copr_calcastor-gnome-patched.repo && \
     rm -f get_helm.sh && \
