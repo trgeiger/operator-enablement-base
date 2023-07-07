@@ -18,7 +18,7 @@ RUN curl -SL https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/crc/la
 RUN curl -SL https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip && unzip awscliv2.zip && ./aws/install --bin-dir /usr/bin --install-dir /usr/bin
 
 # Install overrides and additions, remove lingering files
-RUN rpm-ostree install code qemu libvirt virt-manager && \
+RUN rpm-ostree install code qemu libvirt virt-manager && rm -f /var/lib/unbound/root.key && \
     rm -f /etc/yum.repos.d/vscode.repo && \
     rm -f /etc/_copr_calcastor-gnome-patched.repo && \
     rm -f get_helm.sh && \
