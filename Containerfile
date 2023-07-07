@@ -1,10 +1,7 @@
-ARG FEDORA_MAJOR_VERSION=37
+ARG FEDORA_MAJOR_VERSION=38
 
 FROM quay.io/fedora-ostree-desktops/silverblue:${FEDORA_MAJOR_VERSION}
 # See https://pagure.io/releng/issue/11047 for final location
-
-# Add patched Gnome repo
-RUN wget https://copr.fedorainfracloud.org/coprs/calcastor/gnome-patched/repo/fedora-$(rpm -E %fedora)/calcastor-gnome-patched-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_calcastor-gnome-patched.repo
 
 # Add VSCode repo
 RUN echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo && rpm --import https://packages.microsoft.com/keys/microsoft.asc
@@ -21,8 +18,7 @@ RUN curl -SL https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/crc/la
 RUN curl -SL https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip && unzip awscliv2.zip && ./aws/install --bin-dir /usr/bin --install-dir /usr/bin
 
 # Install overrides and additions, remove lingering files
-RUN rpm-ostree override replace --experimental --from repo=copr:copr.fedorainfracloud.org:calcastor:gnome-patched mutter && \
-    rpm-ostree install vim zsh distrobox code openssl make podman-docker qemu libvirt virt-manager && \
+RUN rpm-ostree install vim distrobox code podman-docker qemu libvirt virt-manager && \
     rm -f /etc/yum.repos.d/vscode.repo && \
     rm -f /etc/_copr_calcastor-gnome-patched.repo && \
     rm -f get_helm.sh && \
